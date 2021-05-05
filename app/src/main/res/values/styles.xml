@@ -5,4 +5,8 @@
         <item name="android:textSize">20sp</item>
         <item name="fontFamily">@font/red_hat_display_medium</item>
     </style>
+    
+    <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_layer</item>
+    </style>
 </resources>
