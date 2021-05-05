@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">RESTaurant</string>
+    
+    <string name="main_screen_qr_button">Сканировать QR-код</string>
+    <string name="main_screen_login_button">Авторизоваться</string>
 </resources>
