@@ -3,7 +3,7 @@ package com.example.restaurant.ui.splash
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.restaurant.MainActivity
+import com.example.restaurant.ui.main.MainActivity
 
 class SplashActivity : AppCompatActivity() {
 

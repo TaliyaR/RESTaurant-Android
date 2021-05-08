@@ -9,4 +9,9 @@
         android:font="@font/red_hat_display_medium"
         android:fontStyle="normal"
         android:fontWeight="500"/>
+
+    <font
+        android:font="@font/red_hat_display_bold"
+        android:fontStyle="normal"
+        android:fontWeight="700"/>
 </font-family>

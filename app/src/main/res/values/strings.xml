@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">RESTaurant</string>
-    
+
     <string name="main_screen_qr_button">Сканировать QR-код</string>
     <string name="main_screen_login_button">Авторизоваться</string>
+
+    <string name="login_screen_email">Email</string>
+    <string name="login_screen_email_header">Email:</string>
+    <string name="login_screen_password">Пароль</string>
+    <string name="login_screen_password_header">Пароль:</string>
+    <string name="login_screen_header">Авторизация</string>
+    <string name="login_screen_login_button">Авторизоваться</string>
+    <string name="login_screen_text">У вас еще нет аккаунта?</string>
+    <string name="login_screen_register">Зарегистрироваться</string>
+    <string name="login_screen_forgot_password">Забыли пароль?</string>
 </resources>
