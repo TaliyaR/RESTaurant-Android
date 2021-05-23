@@ -4,13 +4,29 @@
     <string name="main_screen_qr_button">Сканировать QR-код</string>
     <string name="main_screen_login_button">Авторизоваться</string>
 
-    <string name="login_screen_email">Email</string>
+    <string name="login_screen_email">EMAIL</string>
     <string name="login_screen_email_header">Email:</string>
-    <string name="login_screen_password">Пароль</string>
+    <string name="login_screen_password">ПАРОЛЬ</string>
     <string name="login_screen_password_header">Пароль:</string>
     <string name="login_screen_header">Авторизация</string>
     <string name="login_screen_login_button">Авторизоваться</string>
     <string name="login_screen_text">У вас еще нет аккаунта?</string>
     <string name="login_screen_register">Зарегистрироваться</string>
     <string name="login_screen_forgot_password">Забыли пароль?</string>
+
+    <string name="current_screen_header">Текущий заказ</string>
+    <string name="current_screen_table">Стол №</string>
+    <string name="current_screen_time">Время бронирования: </string>
+    <string name="current_screen_waiter">Официант: </string>
+    <string name="current_screen_total">Итог: </string>
+    <string name="current_screen_total_rub"> руб.</string>
+    <string name="current_screen_empty_order">Вы еще ничего не заказали</string>
+
+    <string name="qr_fragment_title">Наведите камеру на QR-код</string>
+
+    <string name="nav_order">Заказ</string>
+    <string name="nav_history">История</string>
+    <string name="nav_profile">Профиль</string>
+
+    <string name="empty_screen">Функционал в разработке</string>
 </resources>

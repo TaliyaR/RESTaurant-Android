@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginFragment">
+    android:fitsSystemWindows="true"
+    tools:context=".ui.login.LoginActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/abl_header"
@@ -27,7 +28,6 @@
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/abl_header">
 
@@ -48,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="37dp"
+            android:paddingBottom="5dp"
             android:text="@string/login_screen_email_header"
             android:textAllCaps="true"
             android:textSize="22sp"
@@ -57,10 +58,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ti_email"
-            style="@style/TextInputLayout.OutlinedBox.Custom"
+            style="@style/TextInputLayout.FilledBox.Custom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/email_header">
@@ -68,9 +68,13 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/login_screen_email"
                 android:fontFamily="@font/red_hat_display"
-                android:textSize="20sp"/>
+                android:hint="@string/login_screen_email"
+                android:maxLines="1"
+                android:padding="20dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -79,6 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:paddingBottom="5dp"
             android:text="@string/login_screen_password_header"
             android:textAllCaps="true"
             android:textSize="22sp"
@@ -88,10 +93,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ti_password"
-            style="@style/TextInputLayout.OutlinedBox.Custom"
+            style="@style/TextInputLayout.FilledBox.Custom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/password_header">
@@ -99,9 +103,14 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/login_screen_password"
                 android:fontFamily="@font/red_hat_display"
-                android:textSize="20sp"/>
+                android:hint="@string/login_screen_password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:padding="20dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -123,7 +132,6 @@
             style="@style/LoginButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="66dp"
-            android:background="@drawable/rounded_corner"
             android:text="@string/login_screen_login_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

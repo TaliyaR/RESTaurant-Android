@@ -12,8 +12,20 @@ class MainActivityViewModel @Inject constructor(
 ) : ViewModel() {
 
     init {
-        router.newRootScreen(Screens.FirstScreen)
+        router.newRootScreen(Screens.CurrentScreen)
     }
 
     fun initViewModel() {}
+
+    fun openOrderScreen() {
+        router.newRootScreen(Screens.CurrentScreen)
+    }
+
+    fun openHistoryScreen() {
+        router.newRootScreen(Screens.HistoryScreen)
+    }
+
+    fun openProfileScreen() {
+        router.newRootScreen(Screens.ProfileScreen)
+    }
 }
