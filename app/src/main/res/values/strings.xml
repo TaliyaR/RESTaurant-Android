@@ -29,4 +29,5 @@
     <string name="nav_profile">Профиль</string>
 
     <string name="empty_screen">Функционал в разработке</string>
+Qr    <string name="error_permission">Необходимо дать разрешения</string>
 </resources>
