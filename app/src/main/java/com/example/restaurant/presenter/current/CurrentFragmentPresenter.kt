@@ -14,10 +14,10 @@ class CurrentFragmentPresenter @Inject constructor(
     private val clientRepository: ClientRepository
 ) : BasePresenter<CurrentView>() {
 
-
-    fun getOrderByTable(tableId: String) {
+    fun getOrderByTable() {
         launch {
-            handleResult(clientRepository.getOrderByTable(tableId), {
+            val tableId = clientRepository.getTableId()
+            handleResult(clientRepository.getOrderByTable(tableId!!), {
                 val order = it.data
                 viewState.setTableInfo(order.table.number.toString())
                 viewState.setTimeInfo(timeFormat(order.createTime))

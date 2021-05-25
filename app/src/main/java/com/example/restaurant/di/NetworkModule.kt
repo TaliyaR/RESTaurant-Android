@@ -1,6 +1,7 @@
 package com.example.restaurant.di
 
 import com.example.restaurant.data.network.ApiService
+import com.example.restaurant.data.storage.DataPref
 import com.example.restaurant.repositories.ClientRepository
 import dagger.Module
 import dagger.Provides
@@ -41,7 +42,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideClientRepository(apiService: ApiService): ClientRepository {
-        return ClientRepository(apiService)
+    fun provideClientRepository(apiService: ApiService, dataPref: DataPref): ClientRepository {
+        return ClientRepository(apiService, dataPref)
     }
 }

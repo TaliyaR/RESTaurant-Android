@@ -13,6 +13,7 @@ class QrActivityPresenter @Inject constructor(
 
     fun getTableIdFromQrResult(str: String) {
         val tableId = str.substringAfterLast("tableId=")
+        clientRepository.setTableId(tableId)
         launch {
             handleResult(clientRepository.reserveTable(tableId), {
                 viewState.openMainScreen()

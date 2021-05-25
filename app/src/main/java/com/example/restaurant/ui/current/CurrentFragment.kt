@@ -51,10 +51,10 @@ class CurrentFragment : MvpAppCompatFragment(), CurrentView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        presenter.getOrderByTable()
-
-        rv_order.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rv_order.layoutManager = LinearLayoutManager(context)
         rv_order.adapter = recyclerAdapter
+
+        presenter.getOrderByTable()
     }
 
     override fun setTableInfo(number: String) {

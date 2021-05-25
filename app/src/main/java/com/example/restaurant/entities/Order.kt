@@ -9,7 +9,7 @@ data class Order(
     val table: Table,
     @SerializedName("restaurant")
     val restaurant: Restaurant,
-    @SerializedName("position")
+    @SerializedName("positions")
     val positions: List<Position>,
     @SerializedName("employee")
     val employee: Employee,
