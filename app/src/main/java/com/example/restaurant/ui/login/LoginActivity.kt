@@ -2,27 +2,46 @@ package com.example.restaurant.ui.login
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
 import com.example.restaurant.R
+import com.example.restaurant.presenter.login.LoginActivityPresenter
+import com.example.restaurant.presenter.login.LoginView
 import com.example.restaurant.ui.main.MainActivity
-import com.example.restaurant.viewmodel.login.LoginActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import moxy.MvpAppCompatActivity
+import moxy.presenter.ProvidePresenter
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : MvpAppCompatActivity(), LoginView {
 
-    private val viewModel: LoginActivityViewModel by viewModels()
+    @Inject
+    lateinit var presenter: LoginActivityPresenter
+
+    @ProvidePresenter
+    fun providePresenter() = presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         btn_login.setOnClickListener { this.startActivity(Intent(this, MainActivity::class.java)) }
-        btn_register.setOnClickListener { viewModel.onSignUpButtonClick() }
-        btn_forgot.setOnClickListener { viewModel.onForgotPasswordButtonClick() }
+        btn_register.setOnClickListener { presenter.onSignUpButtonClick() }
+        btn_forgot.setOnClickListener { presenter.onForgotPasswordButtonClick() }
 
         topAppBar.setNavigationOnClickListener { finish() }
+    }
+
+    override fun showMessage(msg: String) {
+        GlobalScope.launch {
+            withContext(Dispatchers.Main) {
+                Toast.makeText(this@LoginActivity, msg, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

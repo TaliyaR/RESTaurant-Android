@@ -4,12 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.example.restaurant.R
-import com.example.restaurant.ui.current.CurrentFragment
+import moxy.MvpAppCompatFragment
 
 
-class HistoryFragment : Fragment() {
+class HistoryFragment : MvpAppCompatFragment() {
 
     companion object {
 

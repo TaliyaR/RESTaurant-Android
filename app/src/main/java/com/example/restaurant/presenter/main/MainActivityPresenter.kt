@@ -1,21 +1,20 @@
-package com.example.restaurant.viewmodel.main
+package com.example.restaurant.presenter.main
 
-import androidx.lifecycle.ViewModel
 import com.example.restaurant.Screens
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.example.restaurant.presenter.BasePresenter
+import moxy.InjectViewState
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
-@HiltViewModel
-class MainActivityViewModel @Inject constructor(
+@InjectViewState
+class MainActivityPresenter @Inject constructor(
     private val router: Router
-) : ViewModel() {
+) : BasePresenter<MainView>() {
 
-    init {
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
         router.newRootScreen(Screens.CurrentScreen)
     }
-
-    fun initViewModel() {}
 
     fun openOrderScreen() {
         router.newRootScreen(Screens.CurrentScreen)

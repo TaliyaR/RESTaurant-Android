@@ -1,13 +1,17 @@
 package com.example.restaurant.ui.main
 
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import com.example.restaurant.R
-import com.example.restaurant.viewmodel.main.MainActivityViewModel
+import com.example.restaurant.presenter.login.LoginActivityPresenter
+import com.example.restaurant.presenter.main.MainActivityPresenter
+import com.example.restaurant.presenter.main.MainView
+import com.example.restaurant.presenter.qr.QrActivityPresenter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import moxy.MvpAppCompatActivity
+import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router
@@ -15,9 +19,7 @@ import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-
-    private val viewModel: MainActivityViewModel by viewModels()
+class MainActivity : MvpAppCompatActivity(), MainView {
 
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
@@ -25,28 +27,36 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var router: Router
 
+    @Inject
+    lateinit var diPresenter: MainActivityPresenter
+
+    @InjectPresenter
+    lateinit var presenter: MainActivityPresenter
+
+    @ProvidePresenter
+    fun providePresenter() = diPresenter
+
     private val navigator: Navigator =
         SupportAppNavigator(this, supportFragmentManager, R.id.containerView)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        viewModel.initViewModel()
         navigation.selectedItemId = R.id.action_order
 
         navigation.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.action_order -> {
-                    viewModel.openOrderScreen()
+                    presenter.openOrderScreen()
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.action_history -> {
-                    viewModel.openHistoryScreen()
+                    presenter.openHistoryScreen()
                     return@OnNavigationItemSelectedListener true
 
                 }
                 R.id.action_profile -> {
-                    viewModel.openProfileScreen()
+                    presenter.openProfileScreen()
                     return@OnNavigationItemSelectedListener true
                 }
             }
@@ -63,4 +73,6 @@ class MainActivity : AppCompatActivity() {
         navigatorHolder.removeNavigator()
         super.onPause()
     }
+
+    override fun showMessage(msg: String) {}
 }
