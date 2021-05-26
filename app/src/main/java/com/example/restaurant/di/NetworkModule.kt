@@ -2,6 +2,7 @@ package com.example.restaurant.di
 
 import com.example.restaurant.data.network.ApiService
 import com.example.restaurant.data.storage.DataPref
+import com.example.restaurant.repositories.AuthRepository
 import com.example.restaurant.repositories.ClientRepository
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -52,5 +53,11 @@ class NetworkModule {
     @Provides
     fun provideClientRepository(apiService: ApiService, dataPref: DataPref): ClientRepository {
         return ClientRepository(apiService, dataPref)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAuthRepository(apiService: ApiService, dataPref: DataPref): AuthRepository {
+        return AuthRepository(apiService, dataPref)
     }
 }

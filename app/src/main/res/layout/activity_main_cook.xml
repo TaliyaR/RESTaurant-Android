@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.mainCook.MainCookActivity">
 
     <FrameLayout
         android:id="@+id/containerView"
@@ -22,7 +22,7 @@
         style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
         android:layout_gravity="start"
         app:labelVisibilityMode="unlabeled"
-        app:menu="@menu/nav_item"
+        app:menu="@menu/nav_item_cook"
         app:itemIconSize="30dp"
         app:layout_constraintTop_toBottomOf="@id/containerView"
         app:layout_constraintStart_toStartOf="parent"

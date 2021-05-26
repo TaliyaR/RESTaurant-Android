@@ -2,6 +2,7 @@ package com.example.restaurant.data.network
 
 import com.example.restaurant.entities.Order
 import com.example.restaurant.entities.SignInRequest
+import com.example.restaurant.entities.SignInResponse
 import com.example.restaurant.entities.TableId
 import okhttp3.ResponseBody
 import retrofit2.http.Body
@@ -12,7 +13,7 @@ import retrofit2.http.Query
 interface ApiService {
 
     @POST("/api/signIn")
-    suspend fun signIn(signInRequest: SignInRequest)
+    suspend fun signIn(@Body signInRequest: SignInRequest): SignInResponse
 
     @POST("/api/table/reserve")
     suspend fun reserveTable(@Body id: TableId): ResponseBody

@@ -30,7 +30,6 @@ class CurrentFragmentPresenter @Inject constructor(
                 viewState.setTotal(getCost(order.positions))
             }, {
                 viewState.thanksDialog()
-//                handleError(it)
             })
         }
     }

@@ -15,11 +15,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RESTaurant">
-        <meta-data
-        android:name="com.google.mlkit.vision.DEPENDENCIES"
-        android:value="barcode" />
+        <activity android:name=".ui.mainCook.MainCookActivity"></activity>
 
-        <activity android:name=".ui.navigation.NavigationActivity"></activity>
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="barcode" />
+
+        <activity android:name=".ui.navigation.NavigationActivity" />
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.qr.QrActivity" />
         <activity android:name=".ui.main.MainActivity" />
