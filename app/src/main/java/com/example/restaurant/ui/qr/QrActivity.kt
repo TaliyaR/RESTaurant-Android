@@ -138,6 +138,7 @@ class QrActivity : MvpAppCompatActivity(), QrView {
     override fun showMessage(msg: String) {}
 
     override fun openMainScreen() {
-        this.startActivity(Intent(this, MainActivity::class.java))
+        this.startActivity(Intent(this, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+        finish()
     }
 }

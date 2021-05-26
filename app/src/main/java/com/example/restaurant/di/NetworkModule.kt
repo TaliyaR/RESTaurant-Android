@@ -3,6 +3,8 @@ package com.example.restaurant.di
 import com.example.restaurant.data.network.ApiService
 import com.example.restaurant.data.storage.DataPref
 import com.example.restaurant.repositories.ClientRepository
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,12 +21,18 @@ class NetworkModule {
 
     @Singleton
     @Provides
+    fun provideGson(
+    ): Gson = GsonBuilder().create()
+
+    @Singleton
+    @Provides
     fun provideApiService(
+        gson: Gson,
         httpClient: OkHttpClient.Builder
     ) = Retrofit.Builder()
         .client(httpClient.build())
         .baseUrl("https://restaurantteam404.herokuapp.com")
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
         .create(ApiService::class.java)
 

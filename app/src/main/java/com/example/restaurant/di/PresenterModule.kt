@@ -3,6 +3,7 @@ package com.example.restaurant.di
 import com.example.restaurant.presenter.current.CurrentFragmentPresenter
 import com.example.restaurant.presenter.main.MainActivityPresenter
 import com.example.restaurant.presenter.qr.QrActivityPresenter
+import com.example.restaurant.presenter.splash.SplashPresenter
 import com.example.restaurant.repositories.ClientRepository
 import dagger.Module
 import dagger.Provides
@@ -31,5 +32,12 @@ object PresenterModule {
         router: Router
     ): MainActivityPresenter {
         return MainActivityPresenter(router)
+    }
+
+    @Provides
+    fun provideSplashPresenter(
+        clientRepository: ClientRepository
+    ): SplashPresenter {
+        return SplashPresenter(clientRepository)
     }
 }

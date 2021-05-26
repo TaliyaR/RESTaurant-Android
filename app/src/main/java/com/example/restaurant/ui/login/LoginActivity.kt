@@ -30,7 +30,7 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        btn_login.setOnClickListener { this.startActivity(Intent(this, MainActivity::class.java)) }
+        btn_login.setOnClickListener { }
         btn_register.setOnClickListener { presenter.onSignUpButtonClick() }
         btn_forgot.setOnClickListener { presenter.onForgotPasswordButtonClick() }
 

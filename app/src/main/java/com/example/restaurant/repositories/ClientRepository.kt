@@ -4,6 +4,7 @@ import com.example.restaurant.data.network.ApiResult
 import com.example.restaurant.data.network.ApiService
 import com.example.restaurant.data.storage.DataPref
 import com.example.restaurant.entities.Order
+import com.example.restaurant.entities.TableId
 import javax.inject.Inject
 
 class ClientRepository @Inject constructor(
@@ -14,7 +15,7 @@ class ClientRepository @Inject constructor(
     private var _currentOrder: Order? = null
 
     suspend fun reserveTable(tableId: String) = safeApiCall {
-        return@safeApiCall apiService.reserveTable(tableId)
+        return@safeApiCall apiService.reserveTable(TableId(tableId))
     }
 
     suspend fun getOrderByTable(tableId: String): ApiResult<Order> {
@@ -30,13 +31,15 @@ class ClientRepository @Inject constructor(
 
     }
 
-    fun setTableId(tableId: String) {
-        if(tableId.isNotEmpty()) {
+    fun setTableId(tableId: String?) {
+        if (!tableId.isNullOrEmpty()) {
             dataPref.setTableId(tableId)
+        } else {
+            dataPref.deleteTableId()
         }
     }
 
     fun getTableId(): String? {
-     return dataPref.getTableId()
+        return dataPref.getTableId()
     }
 }

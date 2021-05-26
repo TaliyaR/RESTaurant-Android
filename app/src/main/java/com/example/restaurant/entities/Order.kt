@@ -12,7 +12,7 @@ data class Order(
     @SerializedName("positions")
     val positions: List<Position>,
     @SerializedName("employee")
-    val employee: Employee,
+    val employee: Employee?,
     @SerializedName("status")
     val status: String,
     @SerializedName("createTime")
