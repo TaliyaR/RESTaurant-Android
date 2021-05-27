@@ -1,9 +1,6 @@
 package com.example.restaurant.data.network
 
-import com.example.restaurant.entities.Order
-import com.example.restaurant.entities.SignInRequest
-import com.example.restaurant.entities.SignInResponse
-import com.example.restaurant.entities.TableId
+import com.example.restaurant.entities.*
 import okhttp3.ResponseBody
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -20,4 +17,7 @@ interface ApiService {
 
     @GET("/api/order/table")
     suspend fun getOrderByTable(@Query("tableId") tableId: String): Order
+
+    @GET("/api/employee/current")
+    suspend fun getCurrentEmployee(): Employee
 }

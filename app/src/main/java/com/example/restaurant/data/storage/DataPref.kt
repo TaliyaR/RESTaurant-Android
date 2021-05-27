@@ -7,7 +7,7 @@ class DataPref(private val context: Context) {
     companion object {
         private const val KeyTableId = "key_table_id"
         private const val PrefsName = "prefs_name"
-        private const val AuthCookies = "auth"
+        private const val AuthToken = "auth"
     }
 
     private fun getPrefs() = context.getSharedPreferences(PrefsName, Context.MODE_PRIVATE)
@@ -22,15 +22,15 @@ class DataPref(private val context: Context) {
         getPrefs().edit().putString(KeyTableId, null).apply()
     }
 
-    fun setAuthCookie(authCookie: String){
-        getPrefs().edit().putString(AuthCookies, authCookie).apply()
+    fun setAuthToken(authCookie: String){
+        getPrefs().edit().putString(AuthToken, authCookie).apply()
     }
 
-    fun deleteAuthCookie(){
-        getPrefs().edit().putString(AuthCookies, null).apply()
+    fun deleteAuthToken(){
+        getPrefs().edit().putString(AuthToken, null).apply()
     }
 
-    fun getAuthCookie(): String? {
-        return  getPrefs().getString(AuthCookies, null)
+    fun getAuthToken(): String? {
+        return  getPrefs().getString(AuthToken, null)
     }
 }

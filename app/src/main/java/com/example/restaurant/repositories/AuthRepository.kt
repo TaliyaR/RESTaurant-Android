@@ -13,15 +13,19 @@ class AuthRepository @Inject constructor(
 ) : BaseRepository() {
 
     suspend fun signIn(email: String, password: String): ApiResult<SignInResponse> {
-        return safeApiCall { apiService.signIn(SignInRequest(email, password)) }
+        return safeApiCall {
+            val result = apiService.signIn(SignInRequest(email, password))
+            dataPref.setAuthToken(result.token)
+            return@safeApiCall result
+        }
     }
 
     fun isSignedIn(): Boolean {
-        return dataPref.getAuthCookie().isNullOrEmpty()
+        return dataPref.getAuthToken().isNullOrEmpty()
     }
 
     fun logOut(){
-        dataPref.deleteAuthCookie()
+        dataPref.deleteAuthToken()
     }
 
 }

@@ -4,6 +4,7 @@ import com.example.restaurant.data.network.ApiService
 import com.example.restaurant.data.storage.DataPref
 import com.example.restaurant.repositories.AuthRepository
 import com.example.restaurant.repositories.ClientRepository
+import com.example.restaurant.repositories.EmployeeRepository
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -40,8 +41,11 @@ class NetworkModule {
     @Singleton
     @Provides
     fun provideOkHttpClient(
-        httpLoggingInterceptor: HttpLoggingInterceptor
-    ): OkHttpClient.Builder = OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor)
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        dataPref: DataPref
+    ): OkHttpClient.Builder = OkHttpClient.Builder()
+        .addInterceptor(httpLoggingInterceptor)
+        .addNetworkInterceptor(AuthInterceptor(dataPref))
 
     @Singleton
     @Provides
@@ -59,5 +63,11 @@ class NetworkModule {
     @Provides
     fun provideAuthRepository(apiService: ApiService, dataPref: DataPref): AuthRepository {
         return AuthRepository(apiService, dataPref)
+    }
+
+    @Singleton
+    @Provides
+    fun provideEmployeeRepository(apiService: ApiService): EmployeeRepository {
+        return EmployeeRepository(apiService)
     }
 }
