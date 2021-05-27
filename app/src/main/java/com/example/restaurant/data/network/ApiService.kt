@@ -20,4 +20,10 @@ interface ApiService {
 
     @GET("/api/employee/current")
     suspend fun getCurrentEmployee(): Employee
+
+    @GET("/api/position/status")
+    suspend fun getPositionByStatus(@Query("status") statusType: StatusType): List<Position>
+
+    @GET("/api/position/my")
+    suspend fun getCookingPosition(): List<Position>
 }

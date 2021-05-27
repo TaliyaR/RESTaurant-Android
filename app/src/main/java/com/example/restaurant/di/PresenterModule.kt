@@ -2,9 +2,11 @@ package com.example.restaurant.di
 
 import com.example.restaurant.presenter.current.CurrentFragmentPresenter
 import com.example.restaurant.presenter.employeeProfile.EmployeeProfilePresenter
+import com.example.restaurant.presenter.freeDish.FreeDishPresenter
 import com.example.restaurant.presenter.login.LoginActivityPresenter
 import com.example.restaurant.presenter.main.MainActivityPresenter
 import com.example.restaurant.presenter.mainCook.MainCookPresenter
+import com.example.restaurant.presenter.myDish.MyCookingDishPresenter
 import com.example.restaurant.presenter.qr.QrActivityPresenter
 import com.example.restaurant.presenter.splash.SplashPresenter
 import com.example.restaurant.repositories.AuthRepository
@@ -65,5 +67,19 @@ object PresenterModule {
         employeeRepository: EmployeeRepository
     ): EmployeeProfilePresenter {
         return EmployeeProfilePresenter(employeeRepository)
+    }
+
+    @Provides
+    fun provideFreeDishPresenter(
+        employeeRepository: EmployeeRepository
+    ): FreeDishPresenter {
+        return FreeDishPresenter(employeeRepository)
+    }
+
+    @Provides
+    fun provideMyCookingDishPresenter(
+        employeeRepository: EmployeeRepository
+    ): MyCookingDishPresenter {
+        return MyCookingDishPresenter(employeeRepository)
     }
 }

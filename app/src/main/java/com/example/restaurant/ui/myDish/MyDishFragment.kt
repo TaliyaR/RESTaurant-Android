@@ -1,13 +1,46 @@
 package com.example.restaurant.ui.myDish
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restaurant.R
+import com.example.restaurant.entities.Position
+import com.example.restaurant.presenter.myDish.MyCookingDishPresenter
+import com.example.restaurant.presenter.myDish.MyCookingDishView
+import com.example.restaurant.ui.freeDish.rv.CookDishAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_my_dish.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import moxy.MvpAppCompatFragment
+import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
+import javax.inject.Inject
 
-class MyDishFragment : Fragment() {
+@AndroidEntryPoint
+class MyDishFragment : MvpAppCompatFragment(), MyCookingDishView {
+
+    companion object {
+
+        fun newInstance() = MyDishFragment()
+    }
+
+    @Inject
+    lateinit var diPresenter: MyCookingDishPresenter
+
+    @InjectPresenter
+    lateinit var presenter: MyCookingDishPresenter
+
+    @ProvidePresenter
+    fun providePresenter() = diPresenter
+
+    private var recyclerAdapter = CookDishAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -16,8 +49,46 @@ class MyDishFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_my_dish, container, false)
     }
 
-    companion object {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        fun newInstance() = MyDishFragment()
+        rv_order.layoutManager = LinearLayoutManager(context)
+        rv_order.adapter = recyclerAdapter
+
+        swiperefresh.setOnRefreshListener {
+            presenter.updateList()
+        }
+    }
+
+    override fun setProgressBar(boolean: Boolean) {
+        progress_bar_back.isVisible = boolean
+        progress_bar.isVisible = boolean
+    }
+
+    override fun setList(list: List<Position>) {
+        if (list.isNullOrEmpty()) {
+            tv_empty.isVisible = true
+            iv_note.isVisible = true
+        } else {
+            recyclerAdapter.setList(list)
+            tv_empty.isVisible = false
+            iv_note.isVisible = false
+        }
+    }
+
+    override fun confirmationDialog() {
+        TODO("Not yet implemented")
+    }
+
+    override fun stopRefresh() {
+        swiperefresh.isRefreshing = false
+    }
+
+    override fun showMessage(msg: String) {
+        GlobalScope.launch {
+            withContext(Dispatchers.Main) {
+                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

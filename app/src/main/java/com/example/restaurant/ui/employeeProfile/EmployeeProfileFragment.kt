@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import com.example.restaurant.R
 import com.example.restaurant.entities.Employee
 import com.example.restaurant.presenter.current.CurrentFragmentPresenter
@@ -12,7 +14,14 @@ import com.example.restaurant.presenter.current.CurrentView
 import com.example.restaurant.presenter.employeeProfile.EmployeeProfilePresenter
 import com.example.restaurant.presenter.employeeProfile.EmployeeProfileView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_current.*
 import kotlinx.android.synthetic.main.fragment_employee_profile.*
+import kotlinx.android.synthetic.main.fragment_employee_profile.progress_bar
+import kotlinx.android.synthetic.main.fragment_employee_profile.progress_bar_back
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import moxy.MvpAppCompatFragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
@@ -50,6 +59,16 @@ class EmployeeProfileFragment : MvpAppCompatFragment(), EmployeeProfileView {
         tv_role_name.text = employee.role
     }
 
+    override fun setProgressBar(boolean: Boolean) {
+        progress_bar_back.isVisible = boolean
+        progress_bar.isVisible = boolean
+    }
+
     override fun showMessage(msg: String) {
+        GlobalScope.launch {
+            withContext(Dispatchers.Main) {
+                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
