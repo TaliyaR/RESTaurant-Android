@@ -40,7 +40,7 @@ class MyDishFragment : MvpAppCompatFragment(), MyCookingDishView {
     @ProvidePresenter
     fun providePresenter() = diPresenter
 
-    private var recyclerAdapter = CookDishAdapter()
+    private var recyclerAdapter = CookDishAdapter { presenter.onDishCookedClick(it) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,14 +66,13 @@ class MyDishFragment : MvpAppCompatFragment(), MyCookingDishView {
     }
 
     override fun setList(list: List<Position>) {
-        if (list.isNullOrEmpty()) {
-            tv_empty.isVisible = true
-            iv_note.isVisible = true
-        } else {
-            recyclerAdapter.setList(list)
-            tv_empty.isVisible = false
-            iv_note.isVisible = false
-        }
+        recyclerAdapter.setList(list)
+    }
+
+    override fun showEmptyState(boolean: Boolean) {
+        rv_order.isVisible = !boolean
+        tv_empty.isVisible = boolean
+        iv_note.isVisible = boolean
     }
 
     override fun confirmationDialog() {

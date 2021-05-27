@@ -43,9 +43,10 @@ object PresenterModule {
 
     @Provides
     fun provideSplashPresenter(
-        clientRepository: ClientRepository
+        clientRepository: ClientRepository,
+        authRepository: AuthRepository
     ): SplashPresenter {
-        return SplashPresenter(clientRepository)
+        return SplashPresenter(clientRepository, authRepository)
     }
 
     @Provides
@@ -64,9 +65,10 @@ object PresenterModule {
 
     @Provides
     fun provideEmployeeProfilePresenter(
-        employeeRepository: EmployeeRepository
+        employeeRepository: EmployeeRepository,
+        authRepository: AuthRepository
     ): EmployeeProfilePresenter {
-        return EmployeeProfilePresenter(employeeRepository)
+        return EmployeeProfilePresenter(employeeRepository, authRepository)
     }
 
     @Provides

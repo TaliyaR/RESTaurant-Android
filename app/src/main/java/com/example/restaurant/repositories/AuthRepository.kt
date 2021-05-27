@@ -21,7 +21,7 @@ class AuthRepository @Inject constructor(
     }
 
     fun isSignedIn(): Boolean {
-        return dataPref.getAuthToken().isNullOrEmpty()
+        return !dataPref.getAuthToken().isNullOrEmpty()
     }
 
     fun logOut(){

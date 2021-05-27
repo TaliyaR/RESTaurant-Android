@@ -1,7 +1,7 @@
 package com.example.restaurant.presenter.employeeProfile
 
 import com.example.restaurant.presenter.BasePresenter
-import com.example.restaurant.presenter.current.CurrentView
+import com.example.restaurant.repositories.AuthRepository
 import com.example.restaurant.repositories.EmployeeRepository
 import kotlinx.coroutines.launch
 import moxy.InjectViewState
@@ -9,7 +9,8 @@ import javax.inject.Inject
 
 @InjectViewState
 class EmployeeProfilePresenter @Inject constructor(
-    private val employeeRepository: EmployeeRepository
+    private val employeeRepository: EmployeeRepository,
+    private val authRepository: AuthRepository
 ) : BasePresenter<EmployeeProfileView>() {
 
     override fun onFirstViewAttach() {
@@ -22,5 +23,10 @@ class EmployeeProfilePresenter @Inject constructor(
                 handleError(it)
             })
         }
+    }
+
+    fun logout() {
+        authRepository.logOut()
+        viewState.openNavigationActivity()
     }
 }

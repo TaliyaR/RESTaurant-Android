@@ -11,4 +11,7 @@ interface SplashView : BaseView {
 
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun openMainActivity()
+
+    @StateStrategyType(AddToEndSingleStrategy::class)
+    fun openMainCookActivity()
 }

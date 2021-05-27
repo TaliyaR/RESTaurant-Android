@@ -5,11 +5,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.restaurant.entities.Position
 
 class CookDishAdapter(
-    private var data: List<Position> = emptyList()
+    private var data: List<Position> = emptyList(),
+    private val clickLambda: (Position) -> Unit
 ) : RecyclerView.Adapter<CookDishViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CookDishViewHolder =
-        CookDishViewHolder.create(parent)
+        CookDishViewHolder.create(parent, clickLambda)
 
     override fun getItemCount(): Int = data.size
 

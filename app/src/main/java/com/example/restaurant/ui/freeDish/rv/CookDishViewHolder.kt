@@ -11,7 +11,8 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_cook_task.view.*
 
 class CookDishViewHolder(
-    override val containerView: View
+    override val containerView: View,
+    private val clickLambda: (Position) -> Unit
 ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
     fun bind(position: Position) {
@@ -27,12 +28,14 @@ class CookDishViewHolder(
                     else -> R.drawable.ic_check_mark
                 }
             )
+            btn_status.setOnClickListener { clickLambda(position) }
         }
     }
 
     companion object {
-        fun create(parent: ViewGroup) = CookDishViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_cook_task, parent, false)
+        fun create(parent: ViewGroup, clickLambda: (Position) -> Unit) = CookDishViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_cook_task, parent, false),
+            clickLambda
         )
     }
 }

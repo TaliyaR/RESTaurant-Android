@@ -1,5 +1,6 @@
 package com.example.restaurant.presenter.freeDish
 
+import com.example.restaurant.entities.Position
 import com.example.restaurant.entities.StatusType
 import com.example.restaurant.presenter.BasePresenter
 import com.example.restaurant.repositories.EmployeeRepository
@@ -23,11 +24,24 @@ class FreeDishPresenter @Inject constructor(
         viewState.stopRefresh()
     }
 
+    fun onAddCookingClick(position: Position) {
+        launch {
+            handleResult(employeeRepository.changePositionStatus(position.id, StatusType.COOKING), {
+                updateList()
+            }, { handleError(it) })
+        }
+    }
+
     private fun getList() {
         viewState.setProgressBar(true)
         launch {
             handleResult(employeeRepository.getPositionByStatus(StatusType.CREATED), {
-                viewState.setList(it.data)
+                if (it.data.isNullOrEmpty()) {
+                    viewState.showEmptyState(true)
+                } else {
+                    viewState.showEmptyState(false)
+                    viewState.setList(it.data)
+                }
                 viewState.setProgressBar(false)
             }, {
                 handleError(it)

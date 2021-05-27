@@ -24,6 +24,9 @@ interface ApiService {
     @GET("/api/position/status")
     suspend fun getPositionByStatus(@Query("status") statusType: StatusType): List<Position>
 
+    @POST("/api/position/status")
+    suspend fun changePositionStatus(@Body statusRequest: StatusRequest): ResponseBody
+
     @GET("/api/position/my")
     suspend fun getCookingPosition(): List<Position>
 }

@@ -1,6 +1,5 @@
 package com.example.restaurant.ui.current
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater

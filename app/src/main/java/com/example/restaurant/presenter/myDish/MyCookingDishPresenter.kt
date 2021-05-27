@@ -1,5 +1,7 @@
 package com.example.restaurant.presenter.myDish
 
+import com.example.restaurant.entities.Position
+import com.example.restaurant.entities.StatusType
 import com.example.restaurant.presenter.BasePresenter
 import com.example.restaurant.repositories.EmployeeRepository
 import kotlinx.coroutines.launch
@@ -22,11 +24,24 @@ class MyCookingDishPresenter @Inject constructor(
         viewState.stopRefresh()
     }
 
+    fun onDishCookedClick(position: Position) {
+        launch {
+            handleResult(employeeRepository.changePositionStatus(position.id, StatusType.COOKED), {
+                updateList()
+            }, { handleError(it) })
+        }
+    }
+
     private fun getList() {
         viewState.setProgressBar(true)
         launch {
             handleResult(employeeRepository.getCookingPosition(), {
-                viewState.setList(it.data)
+                if (it.data.isNullOrEmpty()) {
+                    viewState.showEmptyState(true)
+                } else {
+                    viewState.showEmptyState(false)
+                    viewState.setList(it.data)
+                }
                 viewState.setProgressBar(false)
             }, {
                 handleError(it)

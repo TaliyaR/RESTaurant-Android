@@ -1,6 +1,7 @@
 package com.example.restaurant.repositories
 
 import com.example.restaurant.data.network.ApiService
+import com.example.restaurant.entities.StatusRequest
 import com.example.restaurant.entities.StatusType
 import javax.inject.Inject
 
@@ -20,4 +21,7 @@ class EmployeeRepository @Inject constructor(
     suspend fun getCookingPosition() = safeApiCall {
         return@safeApiCall apiService.getCookingPosition()
     }
+
+    suspend fun changePositionStatus(id: Long, status: StatusType) = safeApiCall {
+        return@safeApiCall apiService.changePositionStatus(StatusRequest(id, status.name)) }
 }

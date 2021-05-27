@@ -1,7 +1,7 @@
 package com.example.restaurant.ui.employeeProfile
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,15 +9,11 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import com.example.restaurant.R
 import com.example.restaurant.entities.Employee
-import com.example.restaurant.presenter.current.CurrentFragmentPresenter
-import com.example.restaurant.presenter.current.CurrentView
 import com.example.restaurant.presenter.employeeProfile.EmployeeProfilePresenter
 import com.example.restaurant.presenter.employeeProfile.EmployeeProfileView
+import com.example.restaurant.ui.navigation.NavigationActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_current.*
 import kotlinx.android.synthetic.main.fragment_employee_profile.*
-import kotlinx.android.synthetic.main.fragment_employee_profile.progress_bar
-import kotlinx.android.synthetic.main.fragment_employee_profile.progress_bar_back
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -51,6 +47,11 @@ class EmployeeProfileFragment : MvpAppCompatFragment(), EmployeeProfileView {
         fun newInstance() = EmployeeProfileFragment()
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        btn_logout.setOnClickListener { presenter.logout() }
+    }
+
     override fun setEmployeeInfo(employee: Employee) {
         tv_last_name.text = employee.lastName
         tv_first_name.text = employee.firstName
@@ -62,6 +63,15 @@ class EmployeeProfileFragment : MvpAppCompatFragment(), EmployeeProfileView {
     override fun setProgressBar(boolean: Boolean) {
         progress_bar_back.isVisible = boolean
         progress_bar.isVisible = boolean
+    }
+
+    override fun openNavigationActivity() {
+        startActivity(
+            Intent(
+                context,
+                NavigationActivity::class.java
+            ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        )
     }
 
     override fun showMessage(msg: String) {

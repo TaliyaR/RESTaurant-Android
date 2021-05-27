@@ -48,7 +48,12 @@ class LoginActivity : MvpAppCompatActivity(), LoginView {
     }
 
     override fun mainCookScreenOpen() {
-        this.startActivity(Intent(this, MainCookActivity::class.java))
+        this.startActivity(
+            Intent(
+                this,
+                MainCookActivity::class.java
+            ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        )
     }
 
     override fun showMessage(msg: String) {

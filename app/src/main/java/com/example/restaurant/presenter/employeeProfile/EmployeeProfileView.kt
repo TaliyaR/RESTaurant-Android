@@ -13,4 +13,7 @@ interface EmployeeProfileView : BaseView {
 
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun setProgressBar(boolean: Boolean)
+
+    @StateStrategyType(AddToEndSingleStrategy::class)
+    fun openNavigationActivity()
 }

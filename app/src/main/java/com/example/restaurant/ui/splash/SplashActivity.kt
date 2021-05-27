@@ -1,11 +1,10 @@
 package com.example.restaurant.ui.splash
 
 import android.content.Intent
-import android.os.Bundle
-import com.example.restaurant.presenter.current.CurrentFragmentPresenter
 import com.example.restaurant.presenter.splash.SplashPresenter
 import com.example.restaurant.presenter.splash.SplashView
 import com.example.restaurant.ui.main.MainActivity
+import com.example.restaurant.ui.mainCook.MainCookActivity
 import com.example.restaurant.ui.navigation.NavigationActivity
 import dagger.hilt.android.AndroidEntryPoint
 import moxy.MvpAppCompatActivity
@@ -32,6 +31,11 @@ class SplashActivity : MvpAppCompatActivity(), SplashView {
 
     override fun openMainActivity() {
         startActivity(Intent(this, MainActivity::class.java))
+        finish()
+    }
+
+    override fun openMainCookActivity() {
+        startActivity(Intent(this, MainCookActivity::class.java))
         finish()
     }
 

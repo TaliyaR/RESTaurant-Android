@@ -14,6 +14,9 @@ interface FreeDishView : BaseView {
     fun setList(list: List<Position>)
 
     @StateStrategyType(AddToEndSingleStrategy::class)
+    fun showEmptyState(boolean: Boolean)
+
+    @StateStrategyType(AddToEndSingleStrategy::class)
     fun confirmationDialog()
 
     @StateStrategyType(AddToEndSingleStrategy::class)
