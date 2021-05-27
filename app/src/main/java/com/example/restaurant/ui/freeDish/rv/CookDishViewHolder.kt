@@ -19,7 +19,7 @@ class CookDishViewHolder(
         with(itemView) {
             dish_title.text = position.dish.name
             dish_type.text = position.dish.dishType
-            dish_description.text = position.dish.description
+            dish_description.text = "Описание: ${position.dish.description}"
             dish_ingredients.text = position.dish.composition
             dish_weight.text = position.dish.weight.toString()
             btn_status.setImageResource(

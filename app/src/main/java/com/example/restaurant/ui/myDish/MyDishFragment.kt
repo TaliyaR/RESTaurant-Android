@@ -1,5 +1,6 @@
 package com.example.restaurant.ui.myDish
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.example.restaurant.entities.Position
 import com.example.restaurant.presenter.myDish.MyCookingDishPresenter
 import com.example.restaurant.presenter.myDish.MyCookingDishView
 import com.example.restaurant.ui.freeDish.rv.CookDishAdapter
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_my_dish.*
 import kotlinx.coroutines.Dispatchers
@@ -75,8 +77,17 @@ class MyDishFragment : MvpAppCompatFragment(), MyCookingDishView {
         iv_note.isVisible = boolean
     }
 
-    override fun confirmationDialog() {
-        TODO("Not yet implemented")
+    override fun confirmationDialog(position: Position) {
+        MaterialAlertDialogBuilder(requireActivity(), R.style.AlertDialog)
+            .setTitle(getString(R.string.my_dish_dialog_text))
+            .setMessage(getString(R.string.my_dish_dialog_text))
+            .setPositiveButton("Да") { dialog, _: Int ->
+                presenter.dishCooked(position)
+            }
+            .setNegativeButton("Нет") { dialogInterface: DialogInterface, _: Int ->
+                dialogInterface.dismiss()
+            }
+            .show()
     }
 
     override fun stopRefresh() {

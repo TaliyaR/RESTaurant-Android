@@ -25,6 +25,10 @@ class FreeDishPresenter @Inject constructor(
     }
 
     fun onAddCookingClick(position: Position) {
+        viewState.confirmationDialog(position)
+    }
+
+    fun confirmCooking(position: Position) {
         launch {
             handleResult(employeeRepository.changePositionStatus(position.id, StatusType.COOKING), {
                 updateList()

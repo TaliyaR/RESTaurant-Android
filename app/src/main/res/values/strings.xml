@@ -35,20 +35,26 @@
     <string name="empty_screen">Функционал в разработке</string>
     <string name="error_permission">Необходимо дать разрешения</string>
 
-    <string name="profile_employee_restaurant">Заведение: </string>
-    <string name="profile_employee_role">Роль: </string>
+    <string name="profile_employee_restaurant">Заведение:</string>
+    <string name="profile_employee_role">Роль:</string>
     <string name="profile_employee_logout">Выйти</string>
     <string name="profile_employee_header">Профиль</string>
+    <string name="profile_employee_role_waiter">Официант</string>
+    <string name="profile_employee_role_cook">Повар</string>
 
     <string name="free_dish_header">Свободные блюда</string>
     <string name="free_dish_empty_list">Свободных блюд пока что нет</string>
+    <string name="free_dish_dialog_header">Подтверждение</string>
+    <string name="free_dish_dialog_text">Вы уверены, что хотите взять данное блюдо на готовку?</string>
 
     <string name="my_dish_header">Мои блюда</string>
     <string name="my_dish_empty_list">Пока что у вас нет блюд в готовке</string>
+    <string name="my_dish_dialog_header">Подтверждение</string>
+    <string name="my_dish_dialog_text">Вы уверены, что хотите пометить данное блюдо готовым?</string>
 
-    <string name="item_cook_order_type">Тип блюда: </string>
-    <string name="item_cook_order_description">Описание: </string>
-    <string name="item_cook_order_weight">Вес: </string>
+    <string name="item_cook_order_type">Тип блюда:</string>
+    <string name="item_cook_order_description">Описание: Тарелка с двумя помидорками и огурцами</string>
+    <string name="item_cook_order_weight">Вес:</string>
 
 
 </resources>

@@ -78,6 +78,7 @@
             style="@style/WhiteBoldText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
             android:text="###"
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="@id/tv_restaurant"
@@ -99,6 +100,7 @@
             style="@style/WhiteBoldText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
             android:text="###"
             android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="@id/tv_role"
@@ -130,10 +132,10 @@
 
         <ProgressBar
             android:id="@+id/progress_bar"
-            android:indeterminateTint="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/white" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

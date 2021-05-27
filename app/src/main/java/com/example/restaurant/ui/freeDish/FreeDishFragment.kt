@@ -1,5 +1,6 @@
 package com.example.restaurant.ui.freeDish
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,15 +13,9 @@ import com.example.restaurant.entities.Position
 import com.example.restaurant.presenter.freeDish.FreeDishPresenter
 import com.example.restaurant.presenter.freeDish.FreeDishView
 import com.example.restaurant.ui.freeDish.rv.CookDishAdapter
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_free_dish.*
-import kotlinx.android.synthetic.main.fragment_free_dish.iv_note
-import kotlinx.android.synthetic.main.fragment_free_dish.progress_bar
-import kotlinx.android.synthetic.main.fragment_free_dish.progress_bar_back
-import kotlinx.android.synthetic.main.fragment_free_dish.rv_order
-import kotlinx.android.synthetic.main.fragment_free_dish.swiperefresh
-import kotlinx.android.synthetic.main.fragment_free_dish.tv_empty
-import kotlinx.android.synthetic.main.fragment_my_dish.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -82,8 +77,17 @@ class FreeDishFragment : MvpAppCompatFragment(), FreeDishView {
         iv_note.isVisible = boolean
     }
 
-    override fun confirmationDialog() {
-        TODO("Not yet implemented")
+    override fun confirmationDialog(position: Position) {
+        MaterialAlertDialogBuilder(requireActivity(), R.style.AlertDialog)
+            .setTitle(getString(R.string.free_dish_dialog_header))
+            .setMessage(getString(R.string.free_dish_dialog_text))
+            .setPositiveButton("Да") { dialog, _: Int ->
+                presenter.confirmCooking(position)
+            }
+            .setNegativeButton("Нет") { dialogInterface: DialogInterface, _: Int ->
+                dialogInterface.dismiss()
+            }
+            .show()
     }
 
     override fun stopRefresh() {

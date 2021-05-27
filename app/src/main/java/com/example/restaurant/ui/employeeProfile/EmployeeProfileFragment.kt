@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import com.example.restaurant.R
 import com.example.restaurant.entities.Employee
+import com.example.restaurant.entities.RoleType
 import com.example.restaurant.presenter.employeeProfile.EmployeeProfilePresenter
 import com.example.restaurant.presenter.employeeProfile.EmployeeProfileView
 import com.example.restaurant.ui.navigation.NavigationActivity
@@ -57,7 +58,10 @@ class EmployeeProfileFragment : MvpAppCompatFragment(), EmployeeProfileView {
         tv_first_name.text = employee.firstName
         tv_father_name.text = employee.fatherName
         tv_restaurant_name.text = employee.restaurant.name
-        tv_role_name.text = employee.role
+        tv_role_name.text = when (employee.role) {
+            RoleType.COOK.name -> getString(R.string.profile_employee_role_cook)
+            else -> getString(R.string.profile_employee_role_waiter)
+        }
     }
 
     override fun setProgressBar(boolean: Boolean) {

@@ -18,7 +18,7 @@ interface MyCookingDishView : BaseView {
     fun showEmptyState(boolean: Boolean)
 
     @StateStrategyType(AddToEndSingleStrategy::class)
-    fun confirmationDialog()
+    fun confirmationDialog(position: Position)
 
     @StateStrategyType(AddToEndSingleStrategy::class)
     fun stopRefresh()
