@@ -7,6 +7,7 @@ import com.example.restaurant.presenter.login.LoginActivityPresenter
 import com.example.restaurant.presenter.main.MainActivityPresenter
 import com.example.restaurant.presenter.mainCook.MainCookPresenter
 import com.example.restaurant.presenter.myDish.MyCookingDishPresenter
+import com.example.restaurant.presenter.profile.ProfilePresenter
 import com.example.restaurant.presenter.qr.QrActivityPresenter
 import com.example.restaurant.presenter.splash.SplashPresenter
 import com.example.restaurant.repositories.AuthRepository
@@ -83,5 +84,12 @@ object PresenterModule {
         employeeRepository: EmployeeRepository
     ): MyCookingDishPresenter {
         return MyCookingDishPresenter(employeeRepository)
+    }
+
+    @Provides
+    fun provideProfilePresenter(
+        clientRepository: ClientRepository,
+    ): ProfilePresenter {
+        return ProfilePresenter(clientRepository)
     }
 }

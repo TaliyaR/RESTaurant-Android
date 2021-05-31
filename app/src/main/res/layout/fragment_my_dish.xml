@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context=".ui.myDish.MyDishFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -83,12 +82,12 @@
         android:id="@+id/progress_bar_back"
         style="@android:style/Animation.Translucent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:background="#6F000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/abl_header">
 
         <ProgressBar
             android:id="@+id/progress_bar"
