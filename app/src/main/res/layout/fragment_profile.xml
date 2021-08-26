@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue"
+    android:fitsSystemWindows="true"
+    android:paddingHorizontal="24dp"
+    tools:context=".ui.profile.ProfileFragment">
+
+    <TextView
+        style="@style/LoginButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/empty_screen" />
+
+    <Button
+        android:id="@+id/btn_logout"
+        style="@style/ButtonTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/profile_employee_logout" />
+
+</FrameLayout>

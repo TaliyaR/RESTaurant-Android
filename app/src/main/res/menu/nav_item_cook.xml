@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_my_dish"
+        android:icon="@drawable/ic_cooking"
+        android:title="@string/nav_cook_my_dish" />
+    <item
+        android:id="@+id/action_free_dish"
+        android:icon="@drawable/ic_clipboard"
+        android:title="@string/nav_cook_free_dish" />
+    <item
+        android:id="@+id/action_employee_profile"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/nav_cook_profile" />
+</menu>
